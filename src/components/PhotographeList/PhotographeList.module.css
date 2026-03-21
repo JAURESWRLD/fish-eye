@@ -1,0 +1,39 @@
+.container {
+  flex: 1;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: #901c1c;
+  text-align: right;
+  padding: 2rem 3rem;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  justify-content: space-between;
+  row-gap: 5rem;
+  width: 90%;
+  margin: 0 auto;
+  list-style: none;
+  padding: 3rem 0;
+}
+
+@media (max-width: 768px) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .list {
+    grid-template-columns: 1fr;
+  }
+}

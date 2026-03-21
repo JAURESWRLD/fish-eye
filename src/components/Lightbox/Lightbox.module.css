@@ -1,0 +1,62 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  gap: 1rem;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+.closeBtn {
+  position: absolute;
+  top: -0.3rem;
+  right: -4rem;
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.media {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.title {
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  align-self: flex-start;
+}
+
+.prev,
+.next {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 1rem;
+}
+
+.prev:hover,
+.next:hover {
+  color: var(--primary-light);
+}

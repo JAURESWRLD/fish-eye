@@ -1,14 +1,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-color: #901C1C;
+  --primary-light: #D3573C;
+
+  --secondary-bg: #FAFAFA;
+  --text-dark: #000000;
+
+  --focus-outline: 3px solid #DB8876;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 html {
   height: 100%;
@@ -22,6 +23,7 @@ body {
 
 body {
   min-height: 100%;
+  padding: 0 3rem;
   display: flex;
   flex-direction: column;
   color: var(--foreground);

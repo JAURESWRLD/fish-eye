@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  width: 90%;
+  margin: 0 auto;
+  background: #FAFAFA;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 400px;
+}
+
+.name {
+  font-size: 3rem;
+  color: var(--primary-color);
+}
+
+.location {
+  font-size: 1.2rem;
+  color: var(--primary-light);
+}
+
+.tagline {
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.contactBtn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contactBtn:hover {
+  background-color: var(--primary-light);
+}
+
+.portrait {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+}
