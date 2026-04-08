@@ -4,7 +4,7 @@ import MediaCard from '@/components/MediaCard/MediaCard';
 import { useState } from 'react';
 import Lightbox from '../Lightbox/Lightbox';
 
-export default function MediaGrid({ medias }) {
+export default function MediaGrid({ medias, onLike }) {
   const [lightboxIndex, setLightboxIndex] = useState(null)
 
   const handlePrev = () =>
@@ -16,7 +16,12 @@ export default function MediaGrid({ medias }) {
   return (
     <section className={styles.grid}>
       {medias.map((media, index) => (
-        <MediaCard key={media.id} media={media} onOpen={() => setLightboxIndex(index)} />
+        <MediaCard
+         key={media.id} 
+         media={media} 
+         onOpen={() => setLightboxIndex(index)}
+         onLike={onLike}
+         />
       ))}
       {lightboxIndex !== null && (
         <Lightbox

@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: center;
   z-index: 300;
-  gap: 1rem;
 }
 
 .content {
@@ -15,13 +14,13 @@
   flex-direction: column;
   align-items: center;
   max-width: 800px;
-  width: 100%;
+  width: 50%;
 }
 
 .closeBtn {
   position: absolute;
-  top: -0.3rem;
-  right: -4rem;
+  top: 6rem;
+  right: 20rem;
   background: none;
   border: none;
   color: var(--primary-color);
@@ -50,10 +49,10 @@
   background: none;
   border: none;
   color: var(--primary-color);
-  font-size: 5rem;
+  font-size: 3rem;
   cursor: pointer;
   line-height: 1;
-  padding: 0 1rem;
+  padding: 0;
 }
 
 .prev:hover,

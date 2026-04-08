@@ -11,7 +11,7 @@
 .modal {
   background-color: var(--primary-light);
   border-radius: 8px;
-  padding: 2rem;
+  padding: 1.5rem;
   width: 100%;
   max-width: 500px;
   display: flex;
@@ -34,10 +34,11 @@
 .closeBtn {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: white;
   cursor: pointer;
   padding: 0;
+  font-weight: bold;
 }
 
 .fields {
@@ -50,8 +51,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  font-size: 1rem;
-  color: black;
+  font-size: 1.2rem;
+  color: var(--text-dark);
 }
 
 .fields input,
@@ -78,4 +79,11 @@
 
 .submitBtn:hover {
   background-color: #7a1818;
+}
+
+.title {
+  font-size: 3.3rem;
+  color: black;
+  line-height: 1.2;
+  font-weight: normal;
 }

@@ -2,10 +2,11 @@
   --background: #ffffff;
   --foreground: #171717;
   --primary-color: #901C1C;
-  --primary-light: #D3573C;
+  --primary-light: #DB8876;
+  --primary-text-dark: #000000;
 
   --secondary-bg: #FAFAFA;
-  --text-dark: #000000;
+  --text-dark: #525252;
 
   --focus-outline: 3px solid #DB8876;
 }

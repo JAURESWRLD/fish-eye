@@ -11,18 +11,24 @@
 .info {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1.2rem;
   max-width: 400px;
+}
+
+.subInfo{
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
 .name {
   font-size: 3rem;
-  color: var(--primary-color);
+  color: var(--primary-light);
 }
 
 .location {
   font-size: 1.2rem;
-  color: var(--primary-light);
+  color: var(--primary-color);
 }
 
 .tagline {

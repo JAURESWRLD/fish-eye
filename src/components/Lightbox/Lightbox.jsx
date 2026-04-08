@@ -1,31 +1,71 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './Lightbox.module.css';
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faChevronLeft, 
+  faChevronRight, 
+  faXmark
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function Lightbox({ medias, currentIndex, onClose, onPrev, onNext }) {
   const media = medias[currentIndex];
+  const closeBtnRef = useRef(null);
+  const overlayRef = useRef(null); 
 
+    useEffect(() => {
+    closeBtnRef.current?.focus();
+  }, []);
+
+  // Create a specific function for the Focus Trap
+  const handleTabTrap = (e) => {
+    if (e.key !== 'Tab') return;
+  };
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === 'Escape') onClose();
       if (e.key === 'ArrowLeft') onPrev();
       if (e.key === 'ArrowRight') onNext();
+
+      if (e.key === 'Tab') {
+        const focusableElements = overlayRef.current.querySelectorAll('button, video');
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) { // Shift + Tab (Reculer)
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else { // Tab (Avancer)
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, [onClose, onPrev, onNext]);
 
   return (
-    <div className={styles.overlay} role="dialog" aria-label="Lightbox">
-      <button className={styles.prev} onClick={onPrev} aria-label="Précédent">
-        ‹
+    <div className={styles.overlay}
+     role="dialog" 
+     aria-label="image close up view" 
+     onKeyDown={handleTabTrap} 
+     tabIndex='-1' 
+     ref={overlayRef}>
+      <button className={styles.prev} 
+        onClick={onPrev} 
+        aria-label="Previous image"
+        role='Link'
+        >
+        <FontAwesomeIcon icon={faChevronLeft} />
       </button>
 
       <div className={styles.content}>
-        <button className={styles.closeBtn} onClick={onClose} aria-label="Fermer">
-          ✕
-        </button>
 
         {media.image ? (
           <Image
@@ -34,6 +74,7 @@ export default function Lightbox({ medias, currentIndex, onClose, onPrev, onNext
             width={800}
             height={600}
             className={styles.media}
+            priority
           />
         ) : (
           <video
@@ -41,15 +82,32 @@ export default function Lightbox({ medias, currentIndex, onClose, onPrev, onNext
             className={styles.media}
             controls
             autoPlay
+            aria-label={media.title}
           />
         )}
 
-        <p className={styles.title}>{media.title}</p>
+        <p className={styles.title}>
+          {media.title}
+        </p>
       </div>
 
-      <button className={styles.next} onClick={onNext} aria-label="Suivant">
-        ›
+      <button
+       className={styles.next}
+       onClick={onNext} 
+       aria-label="Next image"
+      role='Link'
+      >
+        <FontAwesomeIcon icon={faChevronRight} />
       </button>
+        <button
+         ref={closeBtnRef}
+         className={styles.closeBtn} 
+         onClick={onClose} 
+         aria-label="Close dialog"
+         role='button'
+         >
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
     </div>
   );
 }

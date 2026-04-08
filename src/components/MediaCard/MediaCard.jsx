@@ -2,47 +2,52 @@
 import styles from './MediaCard.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons'; 
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'; 
 
-export default function MediaCard({ media, onOpen }) {
+export default function MediaCard({ media, onOpen, onLike  }) {
   const { title, image, video, likes } = media;
-  const [likeCount, setLikeCount] = useState(likes);
   const [liked, setLiked] = useState(false);
 
   const handleLike = () => {
-    if (liked) {
-      setLikeCount((prev) => prev - 1);
-    } else {
-      setLikeCount((prev) => prev + 1);
-    }
-    setLiked(!liked);
+    const newStatus = !liked;
+    setLiked(newStatus);
+    onLike(media.id, newStatus); 
   };
 
   return (
-    <article className={styles.card} onClick={onOpen}>
-      <div className={styles.media}>
+    <article className={styles.card}>
+      <button className={styles.media} 
+        aria-label={`${title}, closeup view`} 
+        onClick={onOpen}
+       >
         {image ? (
           <Image
             src={`/images/${image}`}
-            alt={title}
+            alt=''
             width={350}
             height={250}
             className={styles.image}
           />
         ) : (
-          <video className={styles.video} src={`/images/${video}`} muted />
+          <video className={styles.video} src={`/images/${video}`} muted aria-label={title}/>
         )}
-      </div>
+      </button>
       <div className={styles.footer}>
         <p className={styles.title}>{title}</p>
         <div className={styles.likes}>
-          <span>{likeCount}</span>
-          <button
-            className={`${styles.likeBtn} ${liked ? styles.liked : ''}`}
-            onClick={handleLike}
-            aria-label={`Aimer ${title}`}
-          >
-            ♥
-          </button>
+        <button
+          className={`${styles.likeBtn} ${liked ? styles.liked : ''}`}
+          onClick={handleLike}
+          aria-label="likes" 
+        >
+          <span className={styles.count}>{likes}</span>
+          <FontAwesomeIcon
+            icon={liked ? faHeart : farHeart}
+            className={styles.heartIcon} 
+          />
+        </button>
         </div>
       </div>
     </article>

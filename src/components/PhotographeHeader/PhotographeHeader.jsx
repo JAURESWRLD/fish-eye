@@ -11,12 +11,20 @@ export default function PhotographerHeader({ photographer }) {
   return (
     <header className={styles.header}>
       <div className={styles.info}>
-        <h1 className={styles.name}>{name}</h1>
-        <p className={styles.location}>{city}, {country}</p>
-        <p className={styles.tagline}>{tagline}</p>
+        <h1 className={styles.name}>
+          {name}
+        </h1>
+        <div className={styles.subInfo}>
+          <p className={styles.location}>{city}, {country}</p>
+          <p className={styles.tagline}>{tagline}</p>
+        </div>
       </div>
 
-      <button className={styles.contactBtn} onClick={() => setIsModalOpen(true)}>
+      <button 
+        className={styles.contactBtn} 
+        onClick={() => setIsModalOpen(true)} 
+        aria-label='contact me'
+      >
         Contactez-moi
       </button>
 
@@ -26,6 +34,7 @@ export default function PhotographerHeader({ photographer }) {
         width={200}
         height={200}
         className={styles.portrait}
+        priority
       />
       {isModalOpen && (
         <ContactModal
