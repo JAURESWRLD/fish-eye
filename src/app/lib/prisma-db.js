@@ -17,8 +17,11 @@ export const getAllMediasForPhotographer = (photographerId) =>
     where: { photographerId },
   });
 
-export const updateNumberOfLikes = (mediaId, newNumberOfLikes) =>
+export const updateNumberOfLikes = (mediaId, newNumberOfLikes, isLiked) =>
   prisma.media.update({
     where: { id: mediaId },
-    data: { likes: newNumberOfLikes },
+    data: { 
+      likes: newNumberOfLikes,
+      isLiked: isLiked
+     },
   });

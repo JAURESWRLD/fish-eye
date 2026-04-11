@@ -7,8 +7,8 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'; 
 
 export default function MediaCard({ media, onOpen, onLike  }) {
-  const { title, image, video, likes } = media;
-  const [liked, setLiked] = useState(false);
+  const { title, image, video, likes, isLiked } = media;
+  const [liked, setLiked] = useState(isLiked || false);
 
   const handleLike = () => {
     const newStatus = !liked;

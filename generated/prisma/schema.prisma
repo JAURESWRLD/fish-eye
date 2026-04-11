@@ -26,6 +26,7 @@ model Media {
   image          String?
   video          String?
   likes          Int
+  isLiked        Boolean      @default(false)
   date           String
   price          Int
 }

@@ -2157,6 +2157,7 @@ export namespace Prisma {
     image: string | null
     video: string | null
     likes: number | null
+    isLiked: boolean | null
     date: string | null
     price: number | null
   }
@@ -2168,6 +2169,7 @@ export namespace Prisma {
     image: string | null
     video: string | null
     likes: number | null
+    isLiked: boolean | null
     date: string | null
     price: number | null
   }
@@ -2179,6 +2181,7 @@ export namespace Prisma {
     image: number
     video: number
     likes: number
+    isLiked: number
     date: number
     price: number
     _all: number
@@ -2206,6 +2209,7 @@ export namespace Prisma {
     image?: true
     video?: true
     likes?: true
+    isLiked?: true
     date?: true
     price?: true
   }
@@ -2217,6 +2221,7 @@ export namespace Prisma {
     image?: true
     video?: true
     likes?: true
+    isLiked?: true
     date?: true
     price?: true
   }
@@ -2228,6 +2233,7 @@ export namespace Prisma {
     image?: true
     video?: true
     likes?: true
+    isLiked?: true
     date?: true
     price?: true
     _all?: true
@@ -2326,6 +2332,7 @@ export namespace Prisma {
     image: string | null
     video: string | null
     likes: number
+    isLiked: boolean
     date: string
     price: number
     _count: MediaCountAggregateOutputType | null
@@ -2356,6 +2363,7 @@ export namespace Prisma {
     image?: boolean
     video?: boolean
     likes?: boolean
+    isLiked?: boolean
     date?: boolean
     price?: boolean
     photographer?: boolean | PhotographerDefaultArgs<ExtArgs>
@@ -2368,6 +2376,7 @@ export namespace Prisma {
     image?: boolean
     video?: boolean
     likes?: boolean
+    isLiked?: boolean
     date?: boolean
     price?: boolean
     photographer?: boolean | PhotographerDefaultArgs<ExtArgs>
@@ -2380,6 +2389,7 @@ export namespace Prisma {
     image?: boolean
     video?: boolean
     likes?: boolean
+    isLiked?: boolean
     date?: boolean
     price?: boolean
     photographer?: boolean | PhotographerDefaultArgs<ExtArgs>
@@ -2392,11 +2402,12 @@ export namespace Prisma {
     image?: boolean
     video?: boolean
     likes?: boolean
+    isLiked?: boolean
     date?: boolean
     price?: boolean
   }
 
-  export type MediaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "photographerId" | "title" | "image" | "video" | "likes" | "date" | "price", ExtArgs["result"]["media"]>
+  export type MediaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "photographerId" | "title" | "image" | "video" | "likes" | "isLiked" | "date" | "price", ExtArgs["result"]["media"]>
   export type MediaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     photographer?: boolean | PhotographerDefaultArgs<ExtArgs>
   }
@@ -2419,6 +2430,7 @@ export namespace Prisma {
       image: string | null
       video: string | null
       likes: number
+      isLiked: boolean
       date: string
       price: number
     }, ExtArgs["result"]["media"]>
@@ -2851,6 +2863,7 @@ export namespace Prisma {
     readonly image: FieldRef<"Media", 'String'>
     readonly video: FieldRef<"Media", 'String'>
     readonly likes: FieldRef<"Media", 'Int'>
+    readonly isLiked: FieldRef<"Media", 'Boolean'>
     readonly date: FieldRef<"Media", 'String'>
     readonly price: FieldRef<"Media", 'Int'>
   }
@@ -3301,6 +3314,7 @@ export namespace Prisma {
     image: 'image',
     video: 'video',
     likes: 'likes',
+    isLiked: 'isLiked',
     date: 'date',
     price: 'price'
   };
@@ -3340,6 +3354,13 @@ export namespace Prisma {
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -3430,6 +3451,7 @@ export namespace Prisma {
     image?: StringNullableFilter<"Media"> | string | null
     video?: StringNullableFilter<"Media"> | string | null
     likes?: IntFilter<"Media"> | number
+    isLiked?: BoolFilter<"Media"> | boolean
     date?: StringFilter<"Media"> | string
     price?: IntFilter<"Media"> | number
     photographer?: XOR<PhotographerScalarRelationFilter, PhotographerWhereInput>
@@ -3442,6 +3464,7 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     video?: SortOrderInput | SortOrder
     likes?: SortOrder
+    isLiked?: SortOrder
     date?: SortOrder
     price?: SortOrder
     photographer?: PhotographerOrderByWithRelationInput
@@ -3457,6 +3480,7 @@ export namespace Prisma {
     image?: StringNullableFilter<"Media"> | string | null
     video?: StringNullableFilter<"Media"> | string | null
     likes?: IntFilter<"Media"> | number
+    isLiked?: BoolFilter<"Media"> | boolean
     date?: StringFilter<"Media"> | string
     price?: IntFilter<"Media"> | number
     photographer?: XOR<PhotographerScalarRelationFilter, PhotographerWhereInput>
@@ -3469,6 +3493,7 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     video?: SortOrderInput | SortOrder
     likes?: SortOrder
+    isLiked?: SortOrder
     date?: SortOrder
     price?: SortOrder
     _count?: MediaCountOrderByAggregateInput
@@ -3488,6 +3513,7 @@ export namespace Prisma {
     image?: StringNullableWithAggregatesFilter<"Media"> | string | null
     video?: StringNullableWithAggregatesFilter<"Media"> | string | null
     likes?: IntWithAggregatesFilter<"Media"> | number
+    isLiked?: BoolWithAggregatesFilter<"Media"> | boolean
     date?: StringWithAggregatesFilter<"Media"> | string
     price?: IntWithAggregatesFilter<"Media"> | number
   }
@@ -3568,6 +3594,7 @@ export namespace Prisma {
     image?: string | null
     video?: string | null
     likes: number
+    isLiked?: boolean
     date: string
     price: number
     photographer: PhotographerCreateNestedOneWithoutMediasInput
@@ -3580,6 +3607,7 @@ export namespace Prisma {
     image?: string | null
     video?: string | null
     likes: number
+    isLiked?: boolean
     date: string
     price: number
   }
@@ -3589,6 +3617,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     video?: NullableStringFieldUpdateOperationsInput | string | null
     likes?: IntFieldUpdateOperationsInput | number
+    isLiked?: BoolFieldUpdateOperationsInput | boolean
     date?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
     photographer?: PhotographerUpdateOneRequiredWithoutMediasNestedInput
@@ -3601,6 +3630,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     video?: NullableStringFieldUpdateOperationsInput | string | null
     likes?: IntFieldUpdateOperationsInput | number
+    isLiked?: BoolFieldUpdateOperationsInput | boolean
     date?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
   }
@@ -3612,6 +3642,7 @@ export namespace Prisma {
     image?: string | null
     video?: string | null
     likes: number
+    isLiked?: boolean
     date: string
     price: number
   }
@@ -3621,6 +3652,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     video?: NullableStringFieldUpdateOperationsInput | string | null
     likes?: IntFieldUpdateOperationsInput | number
+    isLiked?: BoolFieldUpdateOperationsInput | boolean
     date?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
   }
@@ -3632,6 +3664,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     video?: NullableStringFieldUpdateOperationsInput | string | null
     likes?: IntFieldUpdateOperationsInput | number
+    isLiked?: BoolFieldUpdateOperationsInput | boolean
     date?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
   }
@@ -3758,6 +3791,11 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type PhotographerScalarRelationFilter = {
     is?: PhotographerWhereInput
     isNot?: PhotographerWhereInput
@@ -3775,6 +3813,7 @@ export namespace Prisma {
     image?: SortOrder
     video?: SortOrder
     likes?: SortOrder
+    isLiked?: SortOrder
     date?: SortOrder
     price?: SortOrder
   }
@@ -3793,6 +3832,7 @@ export namespace Prisma {
     image?: SortOrder
     video?: SortOrder
     likes?: SortOrder
+    isLiked?: SortOrder
     date?: SortOrder
     price?: SortOrder
   }
@@ -3804,6 +3844,7 @@ export namespace Prisma {
     image?: SortOrder
     video?: SortOrder
     likes?: SortOrder
+    isLiked?: SortOrder
     date?: SortOrder
     price?: SortOrder
   }
@@ -3830,6 +3871,14 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type MediaCreateNestedManyWithoutPhotographerInput = {
@@ -3894,6 +3943,10 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type PhotographerUpdateOneRequiredWithoutMediasNestedInput = {
@@ -3987,6 +4040,11 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -4015,11 +4073,20 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type MediaCreateWithoutPhotographerInput = {
     title: string
     image?: string | null
     video?: string | null
     likes: number
+    isLiked?: boolean
     date: string
     price: number
   }
@@ -4030,6 +4097,7 @@ export namespace Prisma {
     image?: string | null
     video?: string | null
     likes: number
+    isLiked?: boolean
     date: string
     price: number
   }
@@ -4069,6 +4137,7 @@ export namespace Prisma {
     image?: StringNullableFilter<"Media"> | string | null
     video?: StringNullableFilter<"Media"> | string | null
     likes?: IntFilter<"Media"> | number
+    isLiked?: BoolFilter<"Media"> | boolean
     date?: StringFilter<"Media"> | string
     price?: IntFilter<"Media"> | number
   }
@@ -4133,6 +4202,7 @@ export namespace Prisma {
     image?: string | null
     video?: string | null
     likes: number
+    isLiked?: boolean
     date: string
     price: number
   }
@@ -4142,6 +4212,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     video?: NullableStringFieldUpdateOperationsInput | string | null
     likes?: IntFieldUpdateOperationsInput | number
+    isLiked?: BoolFieldUpdateOperationsInput | boolean
     date?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
   }
@@ -4152,6 +4223,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     video?: NullableStringFieldUpdateOperationsInput | string | null
     likes?: IntFieldUpdateOperationsInput | number
+    isLiked?: BoolFieldUpdateOperationsInput | boolean
     date?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
   }
@@ -4162,6 +4234,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     video?: NullableStringFieldUpdateOperationsInput | string | null
     likes?: IntFieldUpdateOperationsInput | number
+    isLiked?: BoolFieldUpdateOperationsInput | boolean
     date?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
   }

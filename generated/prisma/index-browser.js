@@ -134,6 +134,7 @@ exports.Prisma.MediaScalarFieldEnum = {
   image: 'image',
   video: 'video',
   likes: 'likes',
+  isLiked: 'isLiked',
   date: 'date',
   price: 'price'
 };
