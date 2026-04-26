@@ -8,7 +8,11 @@ export default function PhotographerCard({ photographer }) {
 
   return (
     <article>
-      <Link href={`/photographe/${id}`} className={styles.card} >
+      <Link
+       href={`/photographe/${id}`} 
+       className={styles.card} 
+       aria-label={name}
+      >
         <Image
           src={`/images/${portrait}`}
           alt=''

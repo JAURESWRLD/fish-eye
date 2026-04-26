@@ -9,11 +9,9 @@ export default async function home() {
   return (
     <div className={styles.home}>
       <>
-        <Header />
         <Suspense fallback={<div>Loading...</div>}>
           <PhotographeList photographers={photographers} />
         </Suspense>
-
       </>
     </div>
   );

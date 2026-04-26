@@ -7,15 +7,21 @@ export default function Header() {
   const pathname = usePathname();
   const isPhotographePage = pathname.includes('/photographe/'); 
   return (
-    <header role="banner" className={styles.header}>
-        <Link href="/" role='image link'>
-            <img src="/images/logo.svg" className={styles.logo} alt="Fisheye Home page" />
-        </Link>
-        {!isPhotographePage && (
+    <header className={styles.header}>
+      <Link 
+        href="/"
+      >
+        <img
+          src="/images/logo.svg" 
+          className={styles.logo} 
+          alt="Fisheye Home page"
+        />
+      </Link>
+      {!isPhotographePage && (
         <h1 className={styles.photographersH1}>
-              Nos photographes
+          Nos photographes
         </h1>
-        )}
+      )}
     </header>
 
   );

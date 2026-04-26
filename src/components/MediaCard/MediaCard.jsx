@@ -19,8 +19,8 @@ export default function MediaCard({ media, onOpen, onLike  }) {
   return (
     <article className={styles.card}>
       <button className={styles.media} 
-        aria-label={`${title}, closeup view`} 
         onClick={onOpen}
+        aria-label={`${title}, closeup view`} 
        >
         {image ? (
           <Image
@@ -46,6 +46,7 @@ export default function MediaCard({ media, onOpen, onLike  }) {
           <FontAwesomeIcon
             icon={liked ? faHeart : farHeart}
             className={styles.heartIcon} 
+            aria-label='likes'
           />
         </button>
         </div>

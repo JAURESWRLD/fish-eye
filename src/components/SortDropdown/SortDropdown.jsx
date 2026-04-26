@@ -87,11 +87,30 @@ export default function SortDropdown({ medias, onLike }) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+  
+  useEffect(() => {
+    if (isOpen) {
+      toggleRef.current?.focus();
+    }
+  }, [isOpen, focusedIndex]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDownDocument = (e) => {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDownDocument, true);
+    return () => document.removeEventListener("keydown", handleKeyDownDocument, true);
+  }, [isOpen]);
   return (
     <div>
       <div className={styles.sortBar}>
-        <span className={styles.label} id="order-label">
+        <span className={styles.label} id="order-label order-toggle">
           Trier par
         </span>
         <div className={styles.dropdown} data-dropdown>
@@ -103,19 +122,19 @@ export default function SortDropdown({ medias, onLike }) {
             aria-haspopup="listbox"
             aria-expanded={isOpen}
             aria-labelledby="order-label"
-            aria-activedescendant={activeDescendantId} // ← ici
+            aria-activedescendant={activeDescendantId}
             onKeyDown={handleKeyDown}
           >
             {currentLabel}
             <span className={styles.arrow}>
-              <FontAwesomeIcon icon={isOpen ? faChevronUp : faChevronDown} />
+              <FontAwesomeIcon icon={isOpen ? faChevronUp : faChevronDown} aria-hidden="true" />
             </span>
           </button>
           {isOpen && (
             <ul
               className={styles.menu}
               role="listbox"
-              aria-labelledby="order-label order-toggle"
+              aria-labelledby="order-label"
             >
               {SORT_OPTIONS.map((option, index) => (
                 <li

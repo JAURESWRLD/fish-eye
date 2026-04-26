@@ -9,7 +9,7 @@ export default function PhotographerHeader({ photographer }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <header className={styles.header}>
+    <section className={styles.header}>
       <div className={styles.info}>
         <h1 className={styles.name}>
           {name}
@@ -42,6 +42,6 @@ export default function PhotographerHeader({ photographer }) {
           onClose={() => setIsModalOpen(false)}
         />
       )}
-    </header>
+    </section>
   );
 }

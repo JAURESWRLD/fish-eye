@@ -12,11 +12,8 @@ export default async function PhotographePage({ params }) {
 
   return (
     <>
-       <Header />
-      <div>
         <PhotographeHeader photographer={photographer} />
         <PhotographeContent initialMedias={medias} price={photographer.price} />
-      </div>
     </>
   );
 }
