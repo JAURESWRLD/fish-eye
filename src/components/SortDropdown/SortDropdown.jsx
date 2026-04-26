@@ -110,7 +110,7 @@ export default function SortDropdown({ medias, onLike }) {
   return (
     <div>
       <div className={styles.sortBar}>
-        <span className={styles.label} id="order-label order-toggle">
+        <span className={styles.label} id="order-label">
           Trier par
         </span>
         <div className={styles.dropdown} data-dropdown>
