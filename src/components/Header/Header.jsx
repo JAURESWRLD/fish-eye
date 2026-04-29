@@ -14,7 +14,7 @@ export default function Header() {
         <img
           src="/images/logo.svg" 
           className={styles.logo} 
-          alt="Fisheye Home page"
+          alt="Fisheye page d'accueil"
         />
       </Link>
       {!isPhotographePage && (

@@ -1,6 +1,5 @@
 import { getPhotographer, getAllMediasForPhotographer } from '@/app/lib/prisma-db';
 import PhotographeHeader from '@/components/PhotographeHeader/PhotographeHeader';
-import Header from '@/components/Header/Header';
 import PhotographeContent from '@/components/PhotographeContent/PhotographeContent';
 
 export default async function PhotographePage({ params }) {

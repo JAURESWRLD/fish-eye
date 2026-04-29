@@ -15,21 +15,16 @@ export default function SortDropdown({ medias, onLike }) {
   const [sortBy, setSortBy] = useState("likes");
   const [isOpen, setIsOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(0);
-
   const toggleRef = useRef(null);
 
   const currentLabel = SORT_OPTIONS.find((o) => o.value === sortBy)?.label;
-  const activeDescendantId = isOpen
-    ? `option-${SORT_OPTIONS[focusedIndex].value}`
-    : undefined;
+  const activeId = `option-${SORT_OPTIONS[focusedIndex].value}`;
 
   const sortedMedias = useMemo(() => {
     const data = [...medias];
     if (sortBy === "likes") return data.sort((a, b) => b.likes - a.likes);
-    if (sortBy === "date")
-      return data.sort((a, b) => new Date(b.date) - new Date(a.date));
-    if (sortBy === "title")
-      return data.sort((a, b) => a.title.localeCompare(b.title));
+    if (sortBy === "date") return data.sort((a, b) => new Date(b.date) - new Date(a.date));
+    if (sortBy === "title") return data.sort((a, b) => a.title.localeCompare(b.title));
     return data;
   }, [medias, sortBy]);
 
@@ -38,92 +33,62 @@ export default function SortDropdown({ medias, onLike }) {
     setIsOpen(false);
     toggleRef.current?.focus();
   };
+
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      if (isOpen) {
-        handleSelect(SORT_OPTIONS[focusedIndex].value);
-      } else {
-        setIsOpen(true);
-        setFocusedIndex(SORT_OPTIONS.findIndex((o) => o.value === sortBy));
-      }
-    }
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      if (!isOpen) {
-        setIsOpen(true);
-        setFocusedIndex(SORT_OPTIONS.findIndex((o) => o.value === sortBy));
-      } else {
-        setFocusedIndex((prev) => (prev + 1) % SORT_OPTIONS.length);
-      }
-    }
-    if (e.key === "ArrowUp") {
-      e.preventDefault();
-      if (!isOpen) {
-        setIsOpen(true);
-        setFocusedIndex(SORT_OPTIONS.findIndex((o) => o.value === sortBy));
-      } else {
-        setFocusedIndex(
-          (prev) => (prev - 1 + SORT_OPTIONS.length) % SORT_OPTIONS.length,
-        );
-      }
-    }
     if (e.key === "Escape") {
       setIsOpen(false);
       toggleRef.current?.focus();
+      return;
     }
-    if (e.key === "Tab") {
+
+    if (!isOpen) {
+      if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setIsOpen(true);
+        setFocusedIndex(SORT_OPTIONS.findIndex((o) => o.value === sortBy));
+      }
+      return;
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setFocusedIndex((prev) => (prev + 1) % SORT_OPTIONS.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setFocusedIndex((prev) => (prev - 1 + SORT_OPTIONS.length) % SORT_OPTIONS.length);
+    } else if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleSelect(SORT_OPTIONS[focusedIndex].value);
+    } else if (e.key === "Tab") {
       setIsOpen(false);
     }
   };
 
-  // Fermer si clic en dehors
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (!e.target.closest("[data-dropdown]")) {
-        setIsOpen(false);
-      }
+      if (!e.target.closest("[data-dropdown]")) setIsOpen(false);
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-  
-  useEffect(() => {
-    if (isOpen) {
-      toggleRef.current?.focus();
-    }
-  }, [isOpen, focusedIndex]);
 
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleKeyDownDocument = (e) => {
-      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDownDocument, true);
-    return () => document.removeEventListener("keydown", handleKeyDownDocument, true);
-  }, [isOpen]);
   return (
     <div>
       <div className={styles.sortBar}>
-        <span className={styles.label} id="order-label">
-          Trier par
-        </span>
+        <span className={styles.label} id="order-label">Trier par</span>
         <div className={styles.dropdown} data-dropdown>
           <button
             ref={toggleRef}
             id="order-toggle"
             className={styles.toggle}
             onClick={() => setIsOpen(!isOpen)}
+            onKeyDown={handleKeyDown}
+            role="combobox"
+            aria-controls="sort-listbox"
             aria-haspopup="listbox"
             aria-expanded={isOpen}
-            aria-labelledby="order-label"
-            aria-activedescendant={activeDescendantId}
-            onKeyDown={handleKeyDown}
+            aria-labelledby="order-label order-toggle"
+            aria-activedescendant={isOpen ? activeId : undefined}
           >
             {currentLabel}
             <span className={styles.arrow}>
@@ -132,18 +97,19 @@ export default function SortDropdown({ medias, onLike }) {
           </button>
           {isOpen && (
             <ul
+              id="sort-listbox"
               className={styles.menu}
               role="listbox"
-              aria-labelledby="order-label"
             >
               {SORT_OPTIONS.map((option, index) => (
                 <li
                   key={option.value}
                   id={`option-${option.value}`}
+                  role="option"
+                  aria-selected={focusedIndex === index}
                   className={`${styles.option} ${focusedIndex === index ? styles.focused : ""} ${sortBy === option.value ? styles.active : ""}`}
                   onClick={() => handleSelect(option.value)}
-                  aria-selected={sortBy === option.value}
-                  role="option"
+                  onMouseEnter={() => setFocusedIndex(index)}
                 >
                   {option.label}
                 </li>

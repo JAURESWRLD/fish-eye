@@ -53,14 +53,13 @@ export default function Lightbox({ medias, currentIndex, onClose, onPrev, onNext
   return (
     <div className={styles.overlay}
      role="dialog" 
-     aria-label="image close up view" 
+     aria-label="Image en grand" 
      onKeyDown={handleTabTrap} 
      tabIndex='-1' 
      ref={overlayRef}>
       <button className={styles.prev} 
         onClick={onPrev} 
-        aria-label="Previous image"
-        role='Link'
+        aria-label="Image précédente"
         >
         <FontAwesomeIcon icon={faChevronLeft} />
       </button>
@@ -94,8 +93,7 @@ export default function Lightbox({ medias, currentIndex, onClose, onPrev, onNext
       <button
        className={styles.next}
        onClick={onNext} 
-       aria-label="Next image"
-      role='Link'
+       aria-label="Image suivante"
       >
         <FontAwesomeIcon icon={faChevronRight} />
       </button>
@@ -103,8 +101,7 @@ export default function Lightbox({ medias, currentIndex, onClose, onPrev, onNext
          ref={closeBtnRef}
          className={styles.closeBtn} 
          onClick={onClose} 
-         aria-label="Close dialog"
-         role='button'
+         aria-label="Fermer la fenêtre"
          >
           <FontAwesomeIcon icon={faXmark} />
         </button>

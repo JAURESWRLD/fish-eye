@@ -5,7 +5,7 @@ import { useState } from 'react';
 import ContactModal from '../ContactModal/ContactModal';
 
 export default function PhotographerHeader({ photographer }) {
-  const { name, city, country, tagline, price, portrait } = photographer;
+  const { name, city, country, tagline, portrait } = photographer;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -23,7 +23,7 @@ export default function PhotographerHeader({ photographer }) {
       <button 
         className={styles.contactBtn} 
         onClick={() => setIsModalOpen(true)} 
-        aria-label='contact me'
+        aria-label='contacter moi' 
       >
         Contactez-moi
       </button>
