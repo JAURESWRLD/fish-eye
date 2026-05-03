@@ -18,10 +18,6 @@ export default function Lightbox({ medias, currentIndex, onClose, onPrev, onNext
     closeBtnRef.current?.focus();
   }, []);
 
-  // Create a specific function for the Focus Trap
-  const handleTabTrap = (e) => {
-    if (e.key !== 'Tab') return;
-  };
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === 'Escape') onClose();
@@ -54,7 +50,6 @@ export default function Lightbox({ medias, currentIndex, onClose, onPrev, onNext
     <div className={styles.overlay}
      role="dialog" 
      aria-label="Image en grand" 
-     onKeyDown={handleTabTrap} 
      tabIndex='-1' 
      ref={overlayRef}>
       <button className={styles.prev} 

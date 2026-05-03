@@ -64,6 +64,7 @@
   width: 100%;
   resize: none;
   background-color: white;
+  color: black;
 }
 
 .submitBtn {

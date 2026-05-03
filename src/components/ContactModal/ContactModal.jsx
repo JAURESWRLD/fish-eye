@@ -15,7 +15,12 @@ export default function ContactModal({ photographerName, onClose }) {
   };
 
   const handleSubmit = () => {
+    if (!form.firstName || !form.lastName || !form.email || !form.message) {
+      alert('Veuillez remplir tous les champs du formulaire.');
+      return;
+    }
     console.log('Form submitted:', form);
+    alert('Formulaire soumis avec succès !');
     onClose();
   };
 
